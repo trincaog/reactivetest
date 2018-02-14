@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.RC1'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1'
+sourceCompatibility = 8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+
+dependencies {
+	//netty
+	compile('org.springframework.boot:spring-boot-starter-webflux')
+
+	//tomcat
+	//compile('org.springframework.boot:spring-boot-starter-webflux'){ exclude module: "spring-boot-starter-netty"}
+	//compile('org.springframework.boot:spring-boot-starter-tomcat')
+
+	runtime('org.springframework.boot:spring-boot-devtools')
+	compileOnly('org.projectlombok:lombok:1.16.20')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('io.projectreactor:reactor-test')
+}

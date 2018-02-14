@@ -1,0 +1,17 @@
+
+# reactivetest-tomcat
+aws ecs register-task-definition --cli-input-json file://reactivetest-tomcat-task.json
+aws ecs create-service --cluster default --service-name reactivetest-tomcat-service --task-definition reactivetest-tomcat:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-eaca3086],securityGroups=[sg-4c59a03b],assignPublicIp="ENABLED"}"
+
+# reactivetest-netty
+aws ecs register-task-definition --cli-input-json file://reactivetest-netty-task.json
+aws ecs create-service --cluster default --service-name reactivetest-netty-service --task-definition reactivetest-netty:4 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-eaca3086],securityGroups=[sg-4c59a03b],assignPublicIp="ENABLED"}"
+
+-------------
+
+aws ecs update-service --service reactivetest-tomcat-service --desired-count 0
+aws ecs update-service --service reactivetest-netty-service --desired-count 0
+
+aws ecs delete-service --service reactivetest-tomcat-service
+aws ecs delete-service --service reactivetest-netty-service
+
