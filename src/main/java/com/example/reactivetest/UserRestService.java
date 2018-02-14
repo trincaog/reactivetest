@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import reactor.core.publisher.Flux;
 
+/**
+ * REST service with methods to fetch users synchronously or asynchrounously (reactive).
+ */
 @RestController
 @RequestMapping("/user")
 public class UserRestService {
