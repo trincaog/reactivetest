@@ -24,9 +24,7 @@ public class UserRepository {
 	public Collection<User> getUsersSync(int responseDelay) {
 		try {
 			Thread.sleep(responseDelay);
-		} catch (InterruptedException e) {
-		}
-
+		} catch (InterruptedException e) {}
 		return userList;
 	}
 
